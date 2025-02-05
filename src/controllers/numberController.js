@@ -1,18 +1,25 @@
+
 const classifyNumber = async (req, res, next) => {
+
   const { number } = req.query;
   const num = parseInt(number);
-
-  // Validate input
-  if (isNaN(num)) {
+	
+  //check that number if provided
+	if (!number) {
     return res.status(400).json({
-      status: "error",
-      message: "Invalid number provided",
+      number: "missing number",
+      error: true
     });
   }
-
-
+  // Validate input
+  if (isNaN(num) || !Number.isInteger(num)) {
+    return res.status(400).json({
+      error: true,
+      number: "Invalid number",
+    });
+  }
+	
   try {
-    
     // success response
     return res.status(200).json({
       status: "success",
@@ -21,8 +28,8 @@ const classifyNumber = async (req, res, next) => {
   } catch (error) {
     console.error("Error in classifyNumber:", error);
     return res.status(500).json({
-      status: "error",
-      message: "Internal server error",
+      error: true,
+      number: "Internal server error",
     });
   }
 };

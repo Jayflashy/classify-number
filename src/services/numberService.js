@@ -49,6 +49,17 @@ const getNumberProperties = (number) => {
   };
 };
 
+const getFunFact = async (number) => {
+  try {
+    const response = await axios.get(`http://numbersapi.com/${number}/math`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching fun fact:", error);
+    return `${number} is an interesting number with unique properties.`;
+  }
+};
+
 module.exports = {
-  getNumberProperties
+  getNumberProperties,
+  getFunFact,
 };
