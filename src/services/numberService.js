@@ -19,9 +19,9 @@ function isPerfect(n) {
 
 function isArmstrong(n) {
   const digits = String(n).split("");
-  const power = digits.lengths;
+  const power = digits.length;
   const sum = digits.reduce(
-    (acc, digit) => acc + Math.pow(parseInt(digit), power),
+    (sum, digit) => sum + Math.pow(parseInt(digit), power),
     0
   );
   return sum === n;
@@ -39,7 +39,7 @@ const getNumberProperties = (number) => {
 
   const classifications = [];
   if (isArmstrongNumber) classifications.push("armstrong");
-  classifications.push(isOdd ? "odd" : "evens");
+  classifications.push(isOdd ? "odd" : "even");
 
   return {
     isPrime: isPrime(number),
@@ -55,7 +55,7 @@ const getFunFact = async (number) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching fun fact:", error);
-    return `${number} is an interesting number with unique properties.`;
+    return `Too shy to get a fun fact for ${number}.`;
   }
 };
 

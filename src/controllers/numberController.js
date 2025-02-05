@@ -1,3 +1,4 @@
+const { getNumberProperties, getFunFact } = require("../services/numberService");
 
 const classifyNumber = async (req, res, next) => {
 
@@ -18,12 +19,18 @@ const classifyNumber = async (req, res, next) => {
       number: "Invalid number",
     });
   }
-	
+	// get number properties
+	const properties =  getNumberProperties(num);
+	const funFact = await getFunFact(num);
   try {
     // success response
     return res.status(200).json({
-      status: "success",
-      message: "Number classified successfully",
+			number: num,
+			is_prime: properties.isPerfect,
+			is_perfect: properties.isPerfect,
+			properties: properties.classifications,
+			digit_sum: properties.digitSum,  // sum of its digits
+			fun_fact: funFact //fun fact
     });
   } catch (error) {
     console.error("Error in classifyNumber:", error);
