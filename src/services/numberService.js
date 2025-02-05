@@ -20,13 +20,13 @@ function isPerfect(n) {
 
 // Checks if a number is an Armstrong number (sum of its digits raised to power equals number)
 function isArmstrong(n) {
-  const digits = String(n).split("");
+  const digits = String(Math.abs(n)).split("");
   const power = digits.length;
   const sum = digits.reduce(
     (sum, digit) => sum + Math.pow(parseInt(digit), power),
     0
   );
-  return sum === n;
+  return sum === Math.abs(n);
 }
 
 // Calculates sum of digits in a number, preserving negative signs
