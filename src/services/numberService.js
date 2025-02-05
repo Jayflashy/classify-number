@@ -26,11 +26,12 @@ function isArmstrong(n) {
   );
   return sum === n;
 }
-
 function getDigitSum(n) {
-  return String(n)
+  const isNegative = n < 0;
+  const sum = String(Math.abs(n))
     .split("")
     .reduce((acc, digit) => acc + parseInt(digit), 0);
+  return isNegative ? -sum : sum;
 }
 
 const getNumberProperties = (number) => {
