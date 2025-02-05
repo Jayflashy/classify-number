@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const {numberClassifier} = require("./routes/numberClassifier");
 
 const app = express();
 
@@ -10,13 +11,16 @@ app.use(cors());
 // Routes
 app.use('/api', numberClassifier);
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
-});
+
+// 404 error
+app.use((req, res, next) => {
+    res.status(404).json({
+      status: 'error',
+      message: "Endpoint not found. "
+    });
+  });
 // Start the server
-const PORT = process.env.PORT || 3005;
+const PORT = 2025;
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
