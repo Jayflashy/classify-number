@@ -23,7 +23,7 @@ A REST API that provides mathematical properties and fun facts about numbers. Bu
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/classify-number.git
+git clone https://github.com/jayflashy/classify-number.git
 ```
 
 2. Install dependencies:
@@ -83,7 +83,7 @@ The API can be deployed to platforms like Heroku, Railway, Render or any other N
 To test the API, you can use tools like Postman or curl:
 
 ```bash
-curl http://your-domain.com/api/classify-number?number=371
+curl http://localhost:2025/api/classify-number?number=371
 ```
 
 ## Error Handling
