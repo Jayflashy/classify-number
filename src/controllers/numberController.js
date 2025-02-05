@@ -3,22 +3,12 @@ const { getNumberProperties, getFunFact } = require("../services/numberService")
 const classifyNumber = async (req, res, next) => {
 
   const { number } = req.query;
-  const num = parseInt(number);
-	
-  //check that number if provided
-	if (!number) {
-    return res.status(400).json({
-      number: "missing number",
-      error: true
-    });
-  }
   // Validate input
-  if (isNaN(num) || !Number.isInteger(num)) {
-    return res.status(400).json({
-      error: true,
-      number: "Invalid number",
-    });
+   if (!number || isNaN(number) || !Number.isInteger(Number(number))) {
+    return res.status(400).json({ number: "alphabet", error: true });
   }
+  const num = parseInt(number);
+
 	// get number properties
 	const properties =  getNumberProperties(num);
 	const funFact = await getFunFact(num);

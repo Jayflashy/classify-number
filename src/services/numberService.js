@@ -35,6 +35,7 @@ function getDigitSum(n) {
   const sum = String(Math.abs(n))
     .split("")
     .reduce((acc, digit) => acc + parseInt(digit), 0);
+  return sum;
   return isNegative ? -sum : sum;
 }
 
@@ -59,7 +60,7 @@ const getNumberProperties = (number) => {
 const getFunFact = async (number) => {
   try {
     const response = await axios.get(`http://numbersapi.com/${number}/math`);
-    return response.data;
+    return response.data.text;
   } catch (error) {
     console.error("Error fetching fun fact:", error);
     return `Too shy to get a fun fact for ${number}.`;
